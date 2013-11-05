@@ -104,6 +104,13 @@ class LMTPChannel(asynchat.async_chat):
             self.__state = self.COMMAND
             self.set_terminator('\r\n')
 
+    # HELO/EHLO extensions
+    def lmtp_HELO(self, arg):
+        self.lmtp_LHLO(arg)
+
+    def lmtp_EHLO(self, arg):
+        self.lmtp_LHLO(arg)
+
     # LMTP commands
     def lmtp_LHLO(self, arg):
         if not arg:
